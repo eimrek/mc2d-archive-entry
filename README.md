@@ -20,7 +20,7 @@ In order to fully run the analysis, `campi-v1` data needs to be fully downloaded
 
 ## `campi-v2`
 
-The `analysis.ipynb` script also aims to prepare a new version (`campi-v2`) of the `campi` dataset that could replace the current version.
+The `analysis.ipynb` script also aims to prepare a new version (`campi-v2`) of the `campi` dataset that could replace the current version. Note that also the supplementary files generated for Materials Cloud discover section were used for the consistency check (`discover-mc2d-data-files/`).
 
 For a full list of entry modifications, see the log `analysis.log`.
 
@@ -32,6 +32,7 @@ Here's a brief summary of the main changes:
         - Missing parent `source_db` and/or `db_id`;
         - unsorted parents;
         - conflicting top-level parent with `all_3D_parents` (e.g. two different binding energies for the same parent);
+        - confliciting formula between primary parent and the structure.
     - See `analysis.log` for exact problems per entry.
     - Modified new format adopted:
         - No top-level parent. All parents are in a single source, just `all_3D_parents` with the 1st entry being the main parent used for optimization.
@@ -45,24 +46,24 @@ Here's a brief summary of the main changes:
     - these files were regenerated based on the uuids of the new `structure_2d.json`.
 * `optimized_2d_structures.zip` - removed the intermediate `optimized_structures_new` folder.
 * `README.txt` - fixed various issues, see e.g. `vimdiff campi-v1/README.txt campi-v2/README.txt`
-* The AiiDA archive (`MC2D_export_20220622.aiida`) didn't contain many of the uuids presented in `structure_2d.json`, re-export the archive based on the uuids in 1) `mounet-v4/structures.json` and 2) the cleaned-up `structure_2d.json`.
+* The old AiiDA archive (`MC2D_export_20220622.aiida`) didn't contain many of the uuids presented in `structure_2d.json`, re-export the archive based on the uuids in 1) `mounet-v4/structures.json` and 2) the cleaned-up `structure_2d.json`.
     - Made the following AiiDA groups:
         - `mounet18_optimized_2d_structures` (258)
         - `mounet18_bands` (258)
         - `mounet18_phonons` (245)
-        - `campi23_extracted_2d_structures` (2942)
-        - `campi23_optimized_2d_structures` (2689)
-        - `campi23_band_gap` (2295)
-        - `campi23_bands` (2297)
-        - `campi23_3d_parents` (754)
-        - `campi23_optimized_3d_parents_df2` (2677)
-        - `campi23_optimized_3d_parents_rvv10` (1547)
-        - `campi23_binding_energy_df2` (2928)
-        - `campi23_binding_energy_rvv10` (1649)
-        - `campi23_delta_df2` (1107)
-        - `campi23_delta_rvv10` (1077)
-        - `expanded_two_dimensional_database_initial_2D_structures_as_extracted_from_3D_parent` (2942)
-        - `expanded_two_dimensional_database_bands_relaxed_2D_structures_pbe` (2297)
-        - `expanded_two_dimensional_database_binding_energies_from_all_3D_parents` (4577)
+        - `campi23_extracted_2d_structures` (2936)
+        - `campi23_optimized_2d_structures` (2683)
+        - `campi23_band_gap` (2437)
+        - `campi23_bands` (2437)
+        - `campi23_3d_parents` (750)
+        - `campi23_optimized_3d_parents_df2` (2671)
+        - `campi23_optimized_3d_parents_rvv10` (1542)
+        - `campi23_binding_energy_df2` (2918)
+        - `campi23_binding_energy_rvv10` (1642)
+        - `campi23_delta_df2` (1101)
+        - `campi23_delta_rvv10` (1071)
+        - `expanded_two_dimensional_database_initial_2D_structures_as_extracted_from_3D_parent` (2936)
+        - `expanded_two_dimensional_database_bands_relaxed_2D_structures_pbe` (2437)
+        - `expanded_two_dimensional_database_binding_energies_from_all_3D_parents` (4560)
     - Note that I removed the group `expanded_two_dimensional_database_pw_scf_relaxed_2D_structures_pbe` from the README.txt and from the AiiDA export, as not all entries seemed to have a single consistent SCF calculation ran after the `vc-relax`, as the README.txt described.
         - the previous .aiida archive did contain this group, but it contained the `vc-relax` calculations instead of scf after the relaxation. 
