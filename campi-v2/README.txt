@@ -65,27 +65,25 @@ As an example, structures[0] looks like:
   "abundance": 5.0000000000000004e-08,
   "all_3D_parents": [
     {
-      "formula": "Zn2In4Se8O24",
-      "relaxed_df2_uuid": "098afd24-f620-4c5d-9bf6-47276c13219c",
-      "spg": "P2_1/c",
-      "db_id": "263061",
-      "binding_energy_per_substructure_per_unit_area_df2": {
+      "binding_energy_df2": {
         "uuid": "bd666977-a210-457f-a860-2b1a9211b8a3",
         "value": 0.0149816350662265
       },
-      "uuid": "bea3c00d-bb9d-4c81-a06d-e18145efe657",
-      "source_db": "ICSD"
+      "formula": "In4O24Se8Zn2",
+      "initial_structure_uuid": "bea3c00d-bb9d-4c81-a06d-e18145efe657",
+      "opt_structure_df2_uuid": "098afd24-f620-4c5d-9bf6-47276c13219c",
+      "source_db": "ICSD",
+      "source_db_id": "263061",
+      "space_group_number": 14
     }
   ],
   "as_extracted_2D_structure_uuid": "47e2d50c-9387-4500-aab8-97bffca3fce6",
   "band_gap": {
-    "uuid": "f14bb2a8-9d7c-4727-9570-ee071f6e7531",
-    "value": 4.006325670648691
+    "uuid": "f552ef2c-c5f5-4f64-a3e5-f647c5bec09b",
+    "value": 4.00632567064869
   },
   "bands_uuid": "019ef4b9-b184-4643-9fb7-fa21c8d3a058",
   "formula": "In4O24Se8Zn2",
-  "number_of_atoms": 38,
-  "number_of_species": 4,
   "optimized_2D_structure_uuid": "47df4485-5c81-4597-921b-70f06df6a848",
   "prototype": "In2O12Se4Zn",
   "space_group_number": 7
@@ -94,24 +92,28 @@ As an example, structures[0] looks like:
 
 A few remarks:
 * All the keys ending with 'uuid' provide the unique identifier (UUID) of the corresponding AiiDA object (see below).
-* The key 'db_id' specifies the id number of the 3D parent structure(s) in the source database, the latter
+* The key 'source_db_id' specifies the id number of the 3D parent structure(s) in the source database, the latter
   being either the MPDS, ICSD or COD as indicated by the key 'source_db'. In the case of the ICSD, this id 
   number refers to the "ICSD Collection Code".
 * The key 'as_extracted_2D_structure_uuid' gives the uuid of the 2D monolayer as extracted from the 3D parent
   without further optimization as an isolated monolayer. The uuid can be used directly in AiiDA if the full database 
   has been imported or it can be used to find the proper structure in the folder "as_extracted_2d_structures" in which
   structures are named accordingly to this uuid.
-* The key 'optimized_2D_structure_uuid' gives the uuid of the 2D monolayer optimized with a variable cell relaxation as an 
-  isolated monolayer using the PBE functional. The uuid can be used directly in AiiDA if the full database 
+* The key 'optimized_2D_structure_uuid' gives the uuid of the 2D monolayer optimized with a variable cell relaxation as
+  an isolated monolayer using the PBE functional. The uuid can be used directly in AiiDA if the full database 
   has been imported or it can be used to find the proper structure in the folder "optimized_2d_structures" in which
   structures are named accordingly to this uuid.
-* The key 'bands_uuid' gives the first part of the name of the files containing the electronic bands along high-symmetry paths contained in the folder "bands" in xmgrace format (*.agr file extension). The zero is always set at the Fermi level.
+* The key 'bands_uuid' gives the first part of the name of the files containing the electronic bands along
+  high-symmetry paths contained in the folder "bands" in xmgrace format (*.agr file extension). The zero is always
+  set at the Fermi level.
 * The key 'all_3D_parents' gives the list of 3D parents, sorted by binding energies (computed with the DF2-C09 
   functional) in ascending order (i.e. the lowest binding energy first).
 * The key 'abundance' indicates the abundance in the Earth's crust of the least abundant element in the structure.
-* The keys 'binding_energy_per_substructure_per_unit_area_df2' or 'binding_energy_per_substructure_per_unit_area_rvv10' contain the value of the binding energy in eV/Ang^2 for the more favorable 3D parent computed respectively with the RVV10 or vdw-df-c09 functional. The uuid of the calculation is also reported. 
-* The key 'band_gap' indicates the electronic band gap computed from the band structure along a proper high-symmetry path. The value is given in eV. 
-  The uuid of the inline calculation used to compute the gap is also reported. 
+* The keys 'binding_energy_df2' or 'binding_energy_rvv10' contain the value of the binding energy in eV/Ang^2 for the
+  more favorable 3D parent computed respectively with the vdw-df-c09 or RVV10 functional. The uuid of the calculation
+  is also reported. 
+* The key 'band_gap' indicates the electronic band gap computed from the band structure along a proper high-symmetry
+  path. The value is given in eV. The uuid of the inline calculation used to compute the gap is also reported. 
 
 
 
